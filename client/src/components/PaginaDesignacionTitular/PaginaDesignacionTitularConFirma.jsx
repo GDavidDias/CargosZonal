@@ -2,7 +2,7 @@ import logo from '../../assets/logo_designacion.png';
 import firma from '../../assets/firmas.png';
 import { useEffect, useState } from 'react';
 
-const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
+const PaginaDesignacionTitularConFirma = ({datosInscripto, datosVacante,id_nivel}) =>{
 //console.log('que tiene id_nivel en PaginaDesignacion: ', id_nivel);
     console.log('que ingresa por datosInscripto: ', datosInscripto);
     console.log('que ingresa por datosVacante: ', datosVacante);
@@ -177,19 +177,21 @@ const PaginaDesignacionTitular = ({datosInscripto, datosVacante,id_nivel}) =>{
 
                     </div>
                     
-                     <div className="w-[100%] flex ml-20  align-center">
-                         <img src={""} className='w-[80%]'/>
+                     <div className="w-[100%] flex ml-20 mt-2 align-center">
+                         <img src={firma} className='w-[80%]'/>
                      </div>
                 </div>
             </div>
             {/* PIE IMPRESION */}
-            
-            <div className='flex flex-row h-[12vh] justify-center items-end '>
-                {/*<p className='text-base font-semibold w-[200px] border-t-[1px] border-gray-600 text-center'>Firma y Sello</p>*/}
-            </div>
+            {/**
+             * 
+             <div className='flex flex-row h-[12vh] justify-center items-end '>
+                 <p className='text-base font-semibold w-[200px] border-t-[1px] border-gray-600 text-center'>Firma y Sello</p>
+             </div>
+             */}
             
         </div>
     )
 };
 
-export default PaginaDesignacionTitular;
+export default PaginaDesignacionTitularConFirma;

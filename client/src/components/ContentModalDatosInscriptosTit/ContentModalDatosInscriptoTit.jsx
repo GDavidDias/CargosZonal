@@ -1,7 +1,7 @@
 import { IoMdPrint } from "react-icons/io";
 import { IoTrash } from "react-icons/io5";
 
-const ContentModalDatosInscriptoTit =({datosFormInscripto,datosInscriptoSelect,idInscriptoSelect,closeModal,handleChangeFormInscripto,formEstadoInscripto,submitGuardarFormInscripto,cargoAsignado,procesoImpresion,submitEliminarTomaCargo, procesoImpresionAsistencia, handleCancelDatosInscriptoTit,userSG})=>{
+const ContentModalDatosInscriptoTit =({datosFormInscripto,datosInscriptoSelect,idInscriptoSelect,closeModal,handleChangeFormInscripto,formEstadoInscripto,submitGuardarFormInscripto,cargoAsignado,procesoImpresion, procesoImpresionFirma, submitEliminarTomaCargo, procesoImpresionAsistencia, handleCancelDatosInscriptoTit,userSG})=>{
     //console.log('ingreso a ContentModalDatosInscriptoTit');
     return(
         <div className="notranslate h-100 w-100 flex flex-col items-center">
@@ -111,15 +111,21 @@ const ContentModalDatosInscriptoTit =({datosFormInscripto,datosInscriptoSelect,i
                     {(datosInscriptoSelect.vacante_asignada!=null && datosInscriptoSelect.vacante_asignada!='')  &&
                     <div className="h-[110mm] w-[100mm] ml-2 my-2 border-[1px] border-emerald-500 text-center rounded bg-emerald-50 ">
                         <div className="flex flex-row ">
-                            <div className="w-[20%] "></div>
+                            <div className="w-[10%] "></div>
                             <div className="w-[60%] ">
-                                <label className="text-xl text-center font-bold text-green-700" translate='no'>Vacante que Titularizó</label>
+                                <label className="text-xl text-center font-bold text-green-700" translate='no'>Vacante Asignada</label>
                             </div>
-                            <div className="flex flex-row w-[20%] justify-end">
-                                <button className="font-bold text-xl mr-2 hover:text-sky-500 hover:scale-150 transition-all duration-500">
+                            <div className="flex flex-row w-[30%] justify-end">
+                                <button className="font-bold text-xl mr-2 text-sky-800 hover:text-sky-500 hover:scale-150 transition-all duration-500">
                                     <IoMdPrint 
                                         title="IMPRIMIR DESIGNACION"
                                         onClick={()=>procesoImpresion()}
+                                    />
+                                </button>
+                                <button className="font-bold text-xl mr-2 text-red-500 hover:text-orange-500 hover:scale-150 transition-all duration-500">
+                                    <IoMdPrint 
+                                        title="IMPRIMIR DESIGNACION CON FIRMA"
+                                        onClick={()=>procesoImpresionFirma()}
                                     />
                                 </button>
                                 <button className="font-bold text-lg mr-4 hover:text-red-500 hover:scale-150 transition-all duration-500">

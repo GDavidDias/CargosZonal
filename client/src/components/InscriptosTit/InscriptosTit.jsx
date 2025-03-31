@@ -25,6 +25,7 @@ import { fetchVacanteAsignadaTit } from "../../utils/fetchVacanteAsignadaTit";
 import { updateEstadoAsignadoInscripto } from "../../utils/updateEstadoAsignadoInscripto";
 import { updEstadoAsignadoInscriptoTit } from "../../utils/updateEstadoAsignadoInscriptoTit";
 import PaginaAsistenciaTitular from "../PaginaAsistenciaTitular/PaginaAsistenciaTitular";
+import PaginaDesignacionTitularConFirma from "../PaginaDesignacionTitular/PaginaDesignacionTitularConFirma";
 
 const InscriptosTit = () =>{
     
@@ -104,6 +105,7 @@ const InscriptosTit = () =>{
     const[datosVacante, setDatosVacante]=useState({});
 
     const componentRef = useRef(null);
+    const componentRefDesignacionFirma = useRef(null);
     const componentRefAsistencia = useRef(null);
 
     const[cargoAsignado, setCargoAsignado]=useState('');
@@ -442,6 +444,22 @@ const InscriptosTit = () =>{
 
     const handlePrint = useReactToPrint({
         content:() => componentRef.current,
+        pageStyle:`
+        @page {
+          size: LEGAL; /* Tamaño del papel */
+          orientation: portrait; /* Orientación vertical */
+        }
+      `,
+    });
+
+    //Proceso para Imprimir la designacion con Firma
+    const procesoImpresionFirma = async()=>{
+        //console.log('ingresa a Impresion');
+        await handlePrintFirma();
+    };
+
+    const handlePrintFirma = useReactToPrint({
+        content:() => componentRefDesignacionFirma.current,
         pageStyle:`
         @page {
           size: LEGAL; /* Tamaño del papel */
@@ -854,6 +872,7 @@ const InscriptosTit = () =>{
                     submitGuardarFormInscripto={submitGuardarFormInscripto}
                     cargoAsignado={cargoAsignado}
                     procesoImpresion={procesoImpresion}
+                    procesoImpresionFirma={procesoImpresionFirma}
                     submitEliminarTomaCargo={submitEliminarTomaCargo}
                     procesoImpresionAsistencia={procesoImpresionAsistencia}
                     //handleCancelDatosInscriptoTit={handleCancelDatosInscriptoTit}
@@ -908,10 +927,22 @@ const InscriptosTit = () =>{
 
             {/* PAGINA DE IMPRESION DESIGNACION */}
             <div 
-                className="flex flex-col print:page-break-after"
+                className="flex flex-col print:page-break-after "
                 ref={componentRef}
             >
                 <PaginaDesignacionTitular
+                    datosInscripto={datosInscriptoSelect}
+                    datosVacante={datosVacante}
+                    id_nivel={configSG?.nivel.id_nivel}
+                />
+            </div>
+
+            {/**PAGINA IMPRESION DESIGNACION CON FIRMA */}
+            <div
+                className="flex flex-col print:page-break-after"
+                ref={componentRefDesignacionFirma}
+            >
+                <PaginaDesignacionTitularConFirma
                     datosInscripto={datosInscriptoSelect}
                     datosVacante={datosVacante}
                     id_nivel={configSG?.nivel.id_nivel}
