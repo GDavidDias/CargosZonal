@@ -1,7 +1,7 @@
 import { IoMdPrint } from "react-icons/io";
 import { FiAlertTriangle } from "react-icons/fi";
 
-const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVacanteSelect,procesoImpresion,submitAsignarVacante}) =>{    
+const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVacanteSelect,procesoImpresion,procesoImpresionInstantanea,submitAsignarVacante}) =>{    
     return(
         <div className="h-100 w-100  flex flex-col items-center">
                 <label 
@@ -59,7 +59,7 @@ const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVa
                             </div>
                             <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Cargo</label>
-                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.cargo}</div>
+                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[8vh] pl-[4px] bg-neutral-50 font-semibold">{datosVacanteSelect.cargo}</div>
                             </div>
                             <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Modalidad</label>
@@ -75,19 +75,23 @@ const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVa
                             </div>
                             <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Departamento</label>
-                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.departamento}</div>
+                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50 text-xl">{datosVacanteSelect.departamento}</div>
                             </div>
                             <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Localidad</label>
-                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.localidad}</div>
+                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[8vh] pl-[4px] bg-neutral-50 text-lg">{datosVacanteSelect.localidad}</div>
                             </div>
-                            <div className="flex flex-row my-[2px]">
-                                <label className="font-semibold  mr-2">Zona</label>
-                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.zona}</div>
-                            </div>
+                            {/**
+                             * 
+                             <div className="flex flex-row my-[2px]">
+                                 <label className="font-semibold  mr-2">Zona</label>
+                                 <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.zona}</div>
+                             </div>
+                             * 
+                             */}
                             <div className="flex flex-row my-[2px]">
                                 <label className="font-semibold  mr-2">Hasta</label>
-                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[6vh] pl-[4px] bg-neutral-50 text-sm">{datosVacanteSelect.hasta ?datosVacanteSelect.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}
+                                <div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[6vh] pl-[4px] bg-neutral-50 text-xl">{datosVacanteSelect.hasta ?datosVacanteSelect.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}
                                 </div>
                                 {/*<div className="flex items-center border-[1px]  border-zinc-300 rounded w-[20vw] h-[4vh] pl-[4px] bg-neutral-50">{datosVacanteSelect.hasta ? (() => {
                                     const fecha = new Date(datosVacanteSelect.hasta).toLocaleDateString('es-ES');
@@ -110,12 +114,12 @@ const ContentModalAsignacionTit = ({closeModalAsign,datosInscriptoSelect,datosVa
                         translate='no'
                     >CANCELAR</button>
                     <button
-                        onClick={()=>procesoImpresion()}
+                        onClick={()=>procesoImpresionInstantanea()}
                     >
                         <IoMdPrint 
                             title="Imprimir Designacion"
                             className="text-2xl"
-                            onClick={()=>procesoImpresion()}
+                            onClick={()=>procesoImpresionInstantanea()}
                         />
                     </button>
                 </div>                

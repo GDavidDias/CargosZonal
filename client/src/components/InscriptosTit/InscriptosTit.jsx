@@ -26,6 +26,7 @@ import { updateEstadoAsignadoInscripto } from "../../utils/updateEstadoAsignadoI
 import { updEstadoAsignadoInscriptoTit } from "../../utils/updateEstadoAsignadoInscriptoTit";
 import PaginaAsistenciaTitular from "../PaginaAsistenciaTitular/PaginaAsistenciaTitular";
 import PaginaDesignacionTitularConFirma from "../PaginaDesignacionTitular/PaginaDesignacionTitularConFirma";
+import PaginaDesignacionTitularInstantanea from "../PaginaDesignacionTitular/PaginaDesignacionTitularInstantanea";
 
 const InscriptosTit = () =>{
     
@@ -105,6 +106,7 @@ const InscriptosTit = () =>{
     const[datosVacante, setDatosVacante]=useState({});
 
     const componentRef = useRef(null);
+    const componentRefInstantanea = useRef(null);
     const componentRefDesignacionFirma = useRef(null);
     const componentRefAsistencia = useRef(null);
 
@@ -435,6 +437,22 @@ const InscriptosTit = () =>{
     
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     };
+
+    //Proceso para Imprimir la designacion
+    const procesoImpresionInstantanea = async()=>{
+        //console.log('ingresa a Impresion');
+        await handlePrintInstantanea();
+    };
+
+    const handlePrintInstantanea = useReactToPrint({
+        content:() => componentRefInstantanea.current,
+        pageStyle:`
+        @page {
+          size: LEGAL; /* Tamaño del papel */
+          orientation: portrait; /* Orientación vertical */
+        }
+      `,
+    });
 
     //Proceso para Imprimir la designacion
     const procesoImpresion = async()=>{
@@ -921,9 +939,22 @@ const InscriptosTit = () =>{
                     datosInscriptoSelect={datosInscriptoSelect}
                     datosVacanteSelect={datosVacante}
                     procesoImpresion={procesoImpresion}
+                    procesoImpresionInstantanea={procesoImpresionInstantanea}
                     submitAsignarVacante={submitAsignarVacante}
                 />
             </ModalEdit>
+
+            {/* PAGINA DE IMPRESION DESIGNACION */}
+            <div 
+                className="flex flex-col print:page-break-after "
+                ref={componentRefInstantanea}
+            >
+                <PaginaDesignacionTitularInstantanea
+                    datosInscripto={datosInscriptoSelect}
+                    datosVacante={datosVacante}
+                    id_nivel={configSG?.nivel.id_nivel}
+                />
+            </div>
 
             {/* PAGINA DE IMPRESION DESIGNACION */}
             <div 
@@ -969,7 +1000,7 @@ const InscriptosTit = () =>{
                         <div className="flex justify-center mr-2">
                             <button
                                 className="border-2 border-[#557CF2] mt-10 font-bold w-40 h-8 bg-[#557CF2] text-white hover:bg-sky-300 hover:border-sky-300"
-                                onClick={()=>{procesoImpresion(); 
+                                onClick={()=>{procesoImpresionInstantanea(); 
                                     submitCloseModalConfirm()}}
                             >ACEPTAR</button>
                         </div>

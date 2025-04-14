@@ -2,7 +2,7 @@ import logo from '../../assets/logo_designacion.png';
 import firma from '../../assets/firmas.png';
 import { useEffect, useState } from 'react';
 
-const PaginaDesignacionTitularConFirma = ({datosInscripto, datosVacante,id_nivel}) =>{
+const PaginaDesignacionTitularInstantanea = ({datosInscripto, datosVacante,id_nivel}) =>{
 //console.log('que tiene id_nivel en PaginaDesignacion: ', id_nivel);
     console.log('que ingresa por datosInscripto: ', datosInscripto);
     console.log('que ingresa por datosVacante: ', datosVacante);
@@ -72,24 +72,29 @@ const PaginaDesignacionTitularConFirma = ({datosInscripto, datosVacante,id_nivel
     return(
         <div className='notranslate border-2 border-zinc-300 p-4'>
             {/* ENCABEZADO */}
-            <div className="w-full flex flex-row items-center justify-between">
-                <div className="w-[25%] flex">
-                    <img src={logo} className='w-[60%]'/>
+            <div className="w-full flex flex-col items-center justify-between">
+                <div className='w-full flex flex-row'>
+                    <div className="w-[25%] flex">
+                        <img src={logo} className='w-[60%]'/>
+                    </div>
+                    <div className="w-[50%] flex flex-col items-center">
+                        <p className='text-sm font-semibold'>MINISTERIO DE EDUCACION</p>
+                        <p className='text-sm font-semibold'>Sala {id_nivel===1 ?'Inicial' :'Primaria'} de JPCD</p>
+                    </div>
+                    <div className="w-[25%] flex flex-col items-center ">
+                        <p className='text-sm font-semibold'>Av. España N° 1630</p>
+                        <p className='text-sm font-semibold'>San Salvador de Jujuy</p>
+                    </div>
                 </div>
-                <div className="w-[50%] flex flex-col items-center">
-                    <p className='text-sm font-semibold'>MINISTERIO DE EDUCACION</p>
-                    <p className='text-sm font-semibold'>Sala {id_nivel===1 ?'Inicial' :'Primaria'} de JPCD</p>
-                </div>
-                <div className="w-[25%] flex flex-col items-center ">
-                    <p className='text-sm font-semibold'>Av. España N° 1630</p>
-                    <p className='text-sm font-semibold'>San Salvador de Jujuy</p>
+                <div className='w-full flex'>
+                    <p className='border-b-[1px] border-gray-400 w-[790px] text-center text-xs italic mt-2'>"2025 - Año del Décimo Aniversario del reconocimiento de la Bandera Nacional de la Libertad Civil como Símbolo Patrio Histórico"</p>
                 </div>
                 
             </div>
             {/* TITULO */}
             <div className='flex justify-center'>
                 <label
-                    className='font-bold text-lg my-2 underline '
+                    className='font-bold text-lg my-2 '
                 >CONSTANCIA DE DESIGNACION</label>
             </div>
             {/* CUERPO */}
@@ -103,16 +108,16 @@ const PaginaDesignacionTitularConFirma = ({datosInscripto, datosVacante,id_nivel
                     {/**
                      * 
                     <div className='flex flex-row'>
-                        <p>FECHA: {dia} de {mes} de {año}</p>
-                        <p className='ml-4'>HORA: {horaActual}</p>
-                    </div>
-                     */}
-
-                    <div className='flex flex-row'>
                         <p>FECHA: {varDia} de {nombreMes} de {varAño}</p>
                         <p className='ml-4'>{`Hora: ${horas}:${minutos}:${segundos}`}</p>
-
                     </div>
+                     */}
+                     <div className='flex flex-row'>
+                         <p>FECHA: {dia} de {mes} de {año}</p>
+                         <p className='ml-4'>HORA: {horaActual}</p>
+                     </div>
+
+
                     <p className='font-bold mt-[4px]'>DATOS DEL DOCENTE</p>
                     <div className='flex flex-row'>
                         <p>Orden: </p>
@@ -140,7 +145,7 @@ const PaginaDesignacionTitularConFirma = ({datosInscripto, datosVacante,id_nivel
                     </div> */}
                     <p className='font-bold mt-[4px]'>DATOS DEL CARGO</p>
                     <div className='flex flex-row'>
-                        <p>NUMERO DE CARGO: </p>
+                        <p>N° CARGO: </p>
                         <p className='border-b-[1px] border-black w-[100px] text-center'>{datosVacante.orden}</p>
                         <p>MOVIMIENTO:</p>
                         <p className='border-b-[1px] border-black w-[130px] text-center'>{datosVacante.caracter}</p>
@@ -151,7 +156,9 @@ const PaginaDesignacionTitularConFirma = ({datosInscripto, datosVacante,id_nivel
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                         <p>INSTITUCION:</p>
-                        <p className='border-b-[1px] border-black w-[400px] text-center'>{datosVacante.nombre_establecimiento}</p>
+                        <p className='border-b-[1px] border-black w-[420px] text-center'>{datosVacante.nombre_establecimiento}</p>
+                        <p>REGION:</p>
+                        <p className='border-b-[1px] border-black w-[50px] text-center'>{datosVacante.region}</p>
                     </div>
                     <div className='flex flex-row mt-[2px]'>
                         <p>CARGO:</p>
@@ -173,25 +180,23 @@ const PaginaDesignacionTitularConFirma = ({datosInscripto, datosVacante,id_nivel
                             })() : ''}
                         </p>*/}
                         {/*<p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta_observacion}</p>*/}
-                        <p className='border-b-[1px] border-black w-[350px] text-center text-sm '>{datosVacante.hasta ?datosVacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</p>
+                        <p className='border-b-[1px] border-black w-[200px] text-center text-sm '>{datosVacante.hasta ?datosVacante.hasta.replace(/\d{2}:\d{2}:\d{2}$/, "").trim() :""}</p>
 
                     </div>
                     
-                     <div className="w-[100%] flex ml-20 mt-2 align-center">
-                         <img src={firma} className='w-[80%]'/>
+                     <div className="w-[100%] flex ml-20  align-center">
+                         <img src={""} className='w-[80%]'/>
                      </div>
                 </div>
             </div>
             {/* PIE IMPRESION */}
-            {/**
-             * 
-             <div className='flex flex-row h-[12vh] justify-center items-end '>
-                 <p className='text-base font-semibold w-[200px] border-t-[1px] border-gray-600 text-center'>Firma y Sello</p>
-             </div>
-             */}
+            
+            <div className='flex flex-row h-[12vh] justify-center items-end '>
+                {/*<p className='text-base font-semibold w-[200px] border-t-[1px] border-gray-600 text-center'>Firma y Sello</p>*/}
+            </div>
             
         </div>
     )
 };
 
-export default PaginaDesignacionTitularConFirma;
+export default PaginaDesignacionTitularInstantanea;
