@@ -17,6 +17,7 @@ const asignacionTitRoutes = require('./src/routes/asignacionTit.routes.js');
 const escuelasRoutes = require('./src/routes/escuelas.routes.js');
 const inscriptosPyRRoutes = require('./src/routes/inscriptosPyR.routes.js');
 const vacantesPyRRoutes = require('./src/routes/vacantesPyR.routes.js');
+const instanciaRoutes = require('./src/routes/instancia.routes.js');
 
 
 const app = express();
@@ -73,6 +74,8 @@ app.use('/api', vacantesPyRRoutes);
 //Rutas de modulos generales
 app.use('/api', escuelasRoutes);
 
+//Rutas del modulo instancias
+app.use('/api', instanciaRoutes);
 
 
 //server.listen(3001,()=>{console.log("Server Socket is Running")})

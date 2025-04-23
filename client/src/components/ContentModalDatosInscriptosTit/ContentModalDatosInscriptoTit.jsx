@@ -102,7 +102,7 @@ const ContentModalDatosInscriptoTit =({datosFormInscripto,datosInscriptoSelect,i
                                 </button>
                             </div>
                             }
-                                
+                            
                         </div>
 
                     </div>
