@@ -82,6 +82,12 @@ const SideBar = () => {
         dispatch(setPage('ListadosTit'))
     };
 
+    const submitConsultaAsignaciones = () =>{
+        //
+        console.log('Presiona en Consultas de Asignaciones');
+        dispatch(setPage('ConsultaAsignaciones'))
+    };
+
     const submitInscriptosPyR = () =>{
         //
         console.log('Presiona sobre Inscriptos Provisionales y Reemplazantes');
@@ -156,7 +162,6 @@ const SideBar = () => {
                 }else{
                     dispatch(setPage('InscriptosMov'));
             }
-            
             */
         }else{
             dispatch(setPage('PageIni'));
@@ -362,6 +367,22 @@ const SideBar = () => {
                         >
                             <PiListMagnifyingGlassBold className="text-xl font-bold mr-2"/>
                             <label className="font-light desktop-xl:text-lg">Listado de Vacantes</label>
+                        </div>
+                    }
+
+                    {/**ENLACE A CONSULTAS ASIGNACIONES */}
+                    {((userSG.permiso!=3 && userSG.permiso!=4 ) && configCompSG[5]?.active=="1") &&
+                        <div 
+                            className={` rounded p-[4px] flex flex-row justify-start items-center
+                                ${(pageSG==='ConsultaAsignaciones')
+                                ?'bg-[#C9D991]'
+                                :'hover:bg-[#C9D991]'
+                            }
+                                `}
+                            onClick={()=>submitConsultaAsignaciones()}
+                        >
+                            <PiListMagnifyingGlassBold className="text-xl font-bold mr-2"/>
+                            <label className="font-light desktop-xl:text-lg">Designaciones</label>
                         </div>
                     }
 
